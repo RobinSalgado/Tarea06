@@ -2,8 +2,10 @@ package com.iteso.juegos;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+import java.util.Stack;
 
-public  class CartaEspanola extends Baraja<CartaEspanola>{
+public  class CartaEspanola extends Baraja<CartaEspanola> {
 
 	private final int MAX_NUM_CARTAS = 40;
 
@@ -13,13 +15,12 @@ public  class CartaEspanola extends Baraja<CartaEspanola>{
 	private Figura figura;
 	private Palo palo;
 
-	/*Se tiene que inicializar el array de objetos, de lo contrario regresará la 
+	/*Se tiene que inicializar el array de objetos, de lo contrario regresarï¿½ la 
 	 * JVM (" NullPointerException "). De tal suerte que se agrega 
 	 * ( "new Carta[MAX_NUM_CARTAS]" ) para que NO apunte a null al principio*/
-	private CartaEspanola mazoCartas[] = new CartaEspanola[MAX_NUM_CARTAS];
-
+	private Stack<CartaEspanola> mazoCartas;
 	public CartaEspanola() {
-	
+		this.mazoCartas = new Stack<>();
 	}
 
 	public CartaEspanola(Palo palo, Figura figura) {
@@ -27,16 +28,13 @@ public  class CartaEspanola extends Baraja<CartaEspanola>{
 		setFigura (figura);
 	}
 	
-	public CartaEspanola[] CrearCartas() {
-
+	public List<CartaEspanola> CrearCartas() {
 		Figura figuras[] = Figura.values(); //Obtengo el enum de Figuras en un array.
 		Palo palos[] = Palo.values();//Obtengo el enum de Palos en un array.
 
-		int contadorCartas = 0;
 		for ( int i = 0; i < palos.length; i++) {
 			for (int j = 0; j < figuras.length; j++) {
-				mazoCartas[contadorCartas] = new CartaEspanola( palos[i] , figuras[j] );
-				contadorCartas++;
+				this.mazoCartas.add(new CartaEspanola( palos[i] , figuras[j]));
 			}
 		}
 		return this.mazoCartas;
@@ -51,38 +49,52 @@ public  class CartaEspanola extends Baraja<CartaEspanola>{
 
 	@Override
 	public void desplegar() {
-		// TODO Auto-generated method stub
-		
+		for(CartaEspanola carta : this.mazoCartas) {
+			System.out.println(carta.getPalo() + " de " + carta.getFigura());
+		}
 	}
 
 	@Override
 	public void barajar() {
-		// TODO Auto-generated method stub
 		
+		//Se revuelven los 40 nï¿½meros.
+		Collections.shuffle(this.mazoCartas);
 	}
 
 	@Override
-	public  repartirCarta() {
-		// TODO Auto-generated method stub
-		return null;
+	public void repartirCarta() {
+		if(!this.mazoCartas.isEmpty()) {
+			CartaEspanola cartaActual = this.mazoCartas.pop();
+			System.out.println(cartaActual.getFigura() + " de " + cartaActual.getPalo());
+		} else {
+			System.err.println("ya no hay mas cartas para jugar");
+		}
 	}
 
 	@Override
-	public T[] repartirCarta(int n) {
-		// TODO Auto-generated method stub
-		return null;
+	public void repartirCarta(int n) {
+		if(n > this.mazoCartas.size()) {
+			System.out.println("quieres mas cartas de las que hay en el mazo");
+		} else {
+			for(int i = 0; i < n; i++) {
+				CartaEspanola cartaActual = this.mazoCartas.pop();
+				System.out.println(cartaActual.getFigura() + " de " + cartaActual.getPalo());
+			}
+		}
 	}
 
 	@Override
-	public T[] mazo() {
-		// TODO Auto-generated method stub
-		return null;
+	public Stack<CartaEspanola> mazo() {
+		for(CartaEspanola carta : this.mazoCartas) {
+			System.out.println(carta.getFigura() + " de " + carta.getPalo());
+		}
+		return this.mazoCartas;
 	}
 
 	@Override
 	public int cartasDisponibles() {
-		// TODO Auto-generated method stub
-		return 0;
+		System.out.println(this.mazoCartas.size());
+		return this.mazoCartas.size();
 	}
 
 }//Fin de la clase Carta

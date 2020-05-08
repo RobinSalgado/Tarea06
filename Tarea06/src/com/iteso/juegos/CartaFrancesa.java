@@ -1,11 +1,11 @@
 package com.iteso.juegos;
 
-public class CartaFrancesa {
+import java.util.Stack;
+
+public class CartaFrancesa extends Baraja<CartaFrancesa> {
 
 	enum Suits 	   { DIMANETES, PICAS, CORAZONES, TREBOLES}
-	enum FaceCards { As,Dos,Tres,Cuatro,Cinco,
-		Seis, Siete, Ocho, Nueve,
-		Diez, Joto, Reina, Rey} 
+	enum FaceCards { As,Dos,Tres,Cuatro,Cinco, Seis, Siete, Ocho, Nueve, Diez, Joto, Reina, Rey} 
 
 	private Suits suits;
 	private FaceCards faceCards;
@@ -58,6 +58,38 @@ public class CartaFrancesa {
 
 	public void setFaceCards(FaceCards faceCards) {
 		this.faceCards = faceCards;
+	}
+
+	@Override
+	public void desplegar() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void barajar() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void repartirCarta() {
+	}
+
+	@Override
+	public void repartirCarta(int n) {
+	}
+
+	@Override
+	public Stack<CartaFrancesa> mazo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int cartasDisponibles() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
