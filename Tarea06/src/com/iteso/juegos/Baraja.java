@@ -14,10 +14,7 @@ public abstract class Baraja<T> {
 	public Baraja () {
 		this.cartas = new ArrayList<T>();
 	}//Fin de Constructor.
-	public List<T> crearCartas() {
-		
-		return null;
-	}
+	public abstract Stack<T> crearCartas();
 	public abstract void desplegar();
 
 	public abstract void barajar(); 

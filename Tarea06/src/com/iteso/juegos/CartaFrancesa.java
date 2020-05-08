@@ -59,7 +59,10 @@ public class CartaFrancesa extends Baraja<CartaFrancesa> {
 	public void setFaceCards(FaceCards faceCards) {
 		this.faceCards = faceCards;
 	}
-
+	@Override
+	public Stack<CartaFrancesa> crearCartas() {
+		return null;
+	}
 	@Override
 	public void desplegar() {
 		// TODO Auto-generated method stub

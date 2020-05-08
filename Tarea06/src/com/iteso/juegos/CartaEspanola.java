@@ -6,18 +6,12 @@ import java.util.List;
 import java.util.Stack;
 
 public  class CartaEspanola extends Baraja<CartaEspanola> {
-
-	private final int MAX_NUM_CARTAS = 40;
-
 	public enum Figura {Uno,Dos,Tres,Cuatro,Cinco,Seis,Siete,Sota,Caballo,Rey}
 	public enum Palo {Espadas, Bastos, Oros, Copas}
 
 	private Figura figura;
 	private Palo palo;
 
-	/*Se tiene que inicializar el array de objetos, de lo contrario regresar� la 
-	 * JVM (" NullPointerException "). De tal suerte que se agrega 
-	 * ( "new Carta[MAX_NUM_CARTAS]" ) para que NO apunte a null al principio*/
 	private Stack<CartaEspanola> mazoCartas;
 	public CartaEspanola() {
 		this.mazoCartas = new Stack<>();
@@ -28,7 +22,7 @@ public  class CartaEspanola extends Baraja<CartaEspanola> {
 		setFigura (figura);
 	}
 	
-	public List<CartaEspanola> CrearCartas() {
+	public Stack<CartaEspanola> crearCartas() {
 		Figura figuras[] = Figura.values(); //Obtengo el enum de Figuras en un array.
 		Palo palos[] = Palo.values();//Obtengo el enum de Palos en un array.
 
